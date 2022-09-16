@@ -16,5 +16,6 @@ namespace FilmesAPI.Models
         [Key]
         [Required]
         public int Id { get; set; }
+        public virtual List<SessaoModel> Sessoes { get; set; }
     }
 }

@@ -28,6 +28,12 @@ namespace FilmesAPI.Controllers
             return CreatedAtAction(nameof(GetGerenteById), new { Id = gerente.Id }, gerente);
         }
 
+        [HttpGet]
+        public IActionResult GetGerente()
+        {
+            return Ok(_context.Gerentes);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetGerenteById(int id)
         {
@@ -39,5 +45,30 @@ namespace FilmesAPI.Controllers
             }
             return NotFound();
         }
+        
+        [HttpPut("{id}")]
+        public IActionResult PutGerente(int id,[FromBody] UpdateGerenteDto gerenteDto)
+        {
+            GerenteModel gerente = _context.Gerentes.FirstOrDefault(gerente => gerente.Id == id);
+            if (gerente == null)
+                return NotFound();
+
+            _mapper.Map(gerenteDto, gerente);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteGerente(int id)
+        {
+            GerenteModel gerente = _context.Gerentes.FirstOrDefault(gerente => gerente.Id == id);
+            if (gerente == null)
+                return NotFound();
+
+            _context.Gerentes.Remove(gerente);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
     }
 }
