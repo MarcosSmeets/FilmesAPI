@@ -22,7 +22,7 @@ namespace FilmesAPI.Controllers
         [HttpPost]
         public IActionResult PostFilme([FromBody] CreateFilmeDto filmeDto)
         {
-            Filme filme = _mapper.Map<Filme>(filmeDto);
+            FilmeModel filme = _mapper.Map<FilmeModel>(filmeDto);
             _context.Filmes.Add(filme);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetFilmeById), new {Id = filme.Id}, filme);
@@ -37,7 +37,7 @@ namespace FilmesAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetFilmeById(int id)
         {
-            Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
+            FilmeModel filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme != null)
             {
                 ReadFilmeDto filmeDto = _mapper.Map<ReadFilmeDto>(filme);
@@ -49,7 +49,7 @@ namespace FilmesAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
         {
-            Filme filme = _context.Filmes.FirstOrDefault(filme=>filme.Id == id);
+            FilmeModel filme = _context.Filmes.FirstOrDefault(filme=>filme.Id == id);
             if(filme == null)
                 return NotFound();
 
@@ -61,7 +61,7 @@ namespace FilmesAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteFilme(int id)
         {
-            Filme filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
+            FilmeModel filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
             if (filme == null)
                 return NotFound();
 

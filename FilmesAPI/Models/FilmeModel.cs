@@ -2,7 +2,7 @@
 
 namespace FilmesAPI.Models
 {
-    public class Filme
+    public class FilmeModel
     {
         [Required]
         public string Titulo { get; set; }

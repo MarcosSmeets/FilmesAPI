@@ -28,7 +28,7 @@ namespace FilmesAPI.Controllers
         [HttpPost]
         public IActionResult PostCinema([FromBody] CreateCinemaDto cinemaDto)
         {
-            Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
+            CinemaModel cinema = _mapper.Map<CinemaModel>(cinemaDto);
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetCinemaById), new { Id = cinema.Id }, cinema);
@@ -37,7 +37,7 @@ namespace FilmesAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCinemaById(int id)
         {
-            Cinema cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+            CinemaModel cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
             if (cinema != null)
             {
                 ReadCinemaDto filmeDto = _mapper.Map<ReadCinemaDto>(cinema);
@@ -49,7 +49,7 @@ namespace FilmesAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutCinema(int id, [FromBody] UpdateCinemaDto cinemaDto)
         {
-            Cinema cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+            CinemaModel cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
             if (cinema == null)
                 return NotFound();
 
@@ -61,7 +61,7 @@ namespace FilmesAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCinema(int id)
         {
-            Cinema cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+            CinemaModel cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
             if (cinema == null)
                 return NotFound();
 

@@ -22,7 +22,7 @@ namespace FilmesAPI.Controllers
         [HttpPost]
         public IActionResult PostEndereco([FromBody] CreateEnderecoDto enderecoDto)
         {
-            Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
+            EnderecoModel endereco = _mapper.Map<EnderecoModel>(enderecoDto);
             _context.Enderecos.Add(endereco);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetEnderecoById), new { Id = endereco.Id }, endereco);
@@ -37,7 +37,7 @@ namespace FilmesAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetEnderecoById(int id)
         {
-            Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
+            EnderecoModel endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco != null)
             {
                 ReadEnderecoDto enderecoDto = _mapper.Map<ReadEnderecoDto>(endereco);
@@ -49,7 +49,7 @@ namespace FilmesAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Putendereco(int id, [FromBody] UpdateEnderecoDto enderecoDto)
         {
-            Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
+            EnderecoModel endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco == null)
                 return NotFound();
 
@@ -61,7 +61,7 @@ namespace FilmesAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteEndereco(int id)
         {
-            Endereco endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
+            EnderecoModel endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
             if (endereco == null)
                 return NotFound();
 

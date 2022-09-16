@@ -6,5 +6,7 @@ namespace FilmesAPI.Data.Dto.Cinema
     {
         [Required]
         public string Cinemas { get; set; }
+        public int EnderecoId { get; set; }
+        public int GerenteId { get; set; }
     }
 }

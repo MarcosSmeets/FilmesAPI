@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace FilmesAPI.Models
 {
-    public class Endereco
+    public class EnderecoModel
     {
        [Key]
        [Required]
@@ -13,5 +14,7 @@ namespace FilmesAPI.Models
         public string Bairro { get; set; }
         [Required]
         public int Numero { get; set; }
+        [JsonIgnore]
+        public virtual CinemaModel Cinema { get; set; }
     }
 }
