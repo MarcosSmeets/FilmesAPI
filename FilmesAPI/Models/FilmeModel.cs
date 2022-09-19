@@ -17,5 +17,6 @@ namespace FilmesAPI.Models
         [Required]
         public int Id { get; set; }
         public virtual List<SessaoModel> Sessoes { get; set; }
+        public int ClassificacaoEtaria { get; set; }
     }
 }

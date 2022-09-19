@@ -1,11 +1,13 @@
 using FilmesAPI.Data;
+using FilmesAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-
+builder.Services.AddScoped<FilmeService, FilmeService>();
+builder.Services.AddScoped<CinemaService, CinemaService>();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(opts => opts.UseLazyLoadingProxies().UseMySql(builder.Configuration.GetConnectionString("DbConnection"), new MySqlServerVersion(new Version(8, 0))));
 
